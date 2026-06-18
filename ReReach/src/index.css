@@ -1,0 +1,57 @@
+/* index.css */
+:root {
+  /* Palestinian Flag Palette & UI Theme Tokens */
+  --pal-black: #111111;
+  --pal-white: #ffffff;
+  --pal-green: #007a3d;
+  --pal-red: #ee2a35;
+  --pal-muted-bg: #f8f9fa;
+
+  --text: #333333;
+  --text-h: var(--pal-black);
+  --bg: var(--pal-white);
+  --border: #deeedf;
+  --code-bg: #f4fcf6;
+  --accent: var(--pal-green);
+  --accent-bg: rgba(0, 122, 61, 0.08);
+  --accent-border: rgba(0, 122, 61, 0.4);
+  --social-bg: rgba(238, 42, 53, 0.08);
+  --shadow: rgba(0, 0, 0, 0.08) 0 10px 15px -3px, rgba(0, 0, 0, 0.04) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  background-color: var(--pal-muted-bg);
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--heading);
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.text-pal-green { color: var(--pal-green) !important; }
+.text-pal-red { color: var(--pal-red) !important; }
+.bg-pal-black { background-color: var(--pal-black) !important; }
+.bg-pal-green { background-color: var(--pal-green) !important; }
+.bg-pal-red { background-color: var(--pal-red) !important; }
