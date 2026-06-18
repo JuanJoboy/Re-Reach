@@ -1,38 +1,38 @@
-import { Heart } from 'lucide-react';
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 
-export default function Navbar({ scrollToSection })
+export default function NavbarComponent({ scrollToSection })
 {
     return (
-        <Navbar expand="lg" bg="dark" variant="dark">
-            <Container> {/* Enforces horizontal padding, centers content and has a max width of 1140px */}
-                <Image className="me-5" src={CCLogo} rounded style={{cursor: 'pointer', width: `${CCLogoSize}px`, height: `${CCLogoSize}px`}} onClick={() => navigate('/dashboard')} />
+        <Navbar expand="md" variant="dark" fixed="top" className="bg-pal-green py-2">
+            <Container fluid="md" className="px-3">
+                <Navbar.Brand
+                    as="button"
+                    onClick={() => scrollToSection('hero')}
+                    className="border-0 bg-transparent text-white fw-bold fs-5 d-flex align-items-center gap-1"
+                >
+                    🤝 Hands<span className="text-pal-sand">4Gaza</span>
+                </Navbar.Brand>
 
-                <Navbar.Brand className="me-5" onClick={() => navigate('/dashboard')} style={{cursor: 'pointer'}}>Conference Connect</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0 text-white" />
 
-                <button onClick={() => scrollToSection('mission')} className="btn btn-link nav-link px-1 px-md-2 text-white">Mission</button>
-
-                {/* Toggle shows hamburger on small screens, Collapse hides and shows when clicked */}
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="my-2 gap-3 gap-lg-4 text-center me-auto"> {/* initial vertical spacing | mobile vertical spacing between elements | desktop horizontal spacing between elements | push all components not within this section to the end */}
-                        <Nav.Link onClick={() => navigate('/dashboard')} style={{cursor: 'pointer'}}>Dashboard</Nav.Link>
-                        <Nav.Link onClick={() => navigate('/my-schedule')} style={{cursor: 'pointer'}}>My Schedule</Nav.Link>
-                        <Nav.Link onClick={() => navigate('/active-sessions')} style={{cursor: 'pointer'}}>Active Sessions</Nav.Link>
+                    <Nav className="mx-auto gap-4 text-center pt-3 pt-md-0">
+                        <Nav.Link as="button" onClick={() => scrollToSection('printer')} className="text-white opacity-75 border-0 bg-transparent small px-0 py-2 py-md-0">I Have a Printer</Nav.Link>
+                        <Nav.Link as="button" onClick={() => scrollToSection('designs')} className="text-white opacity-75 border-0 bg-transparent small px-0 py-2 py-md-0">Designs</Nav.Link>
+                        <Nav.Link as="button" onClick={() => scrollToSection('impact')} className="text-white opacity-75 border-0 bg-transparent small px-0 py-2 py-md-0">Impact</Nav.Link>
+                        <Nav.Link as="button" onClick={() => scrollToSection('request')} className="text-white opacity-75 border-0 bg-transparent small px-0 py-2 py-md-0">Request a Hand</Nav.Link>
                     </Nav>
 
-                    {/* Displays only on mobile | Doesn't display on anything larger*/}
-                    <hr className="my-5 d-block d-md-none" />
-
-                    {/* mobile screen column | desktop row | mobile vertical spacing between elements | desktop horizontal spacing between elements*/}
-                    <Nav className="d-flex flex-column flex-lg-row align-items-center gap-4 gap-lg-5 text-center">
-                        <Button onClick={logout} variant="danger">
-                            Log Out
+                    <div className="pt-3 pt-md-0 text-start">
+                        <Button
+                            onClick={() => scrollToSection('donate')}
+                            variant="none"
+                            className="bg-pal-terra text-white fw-bold px-3 py-1 small w-100 w-md-auto"
+                            style={{ borderRadius: 'var(--radius)' }}
+                        >
+                            Donate
                         </Button>
-
-                        <h5 className="text-light" onClick={() => navigate('/dashboard')} style={{cursor: 'pointer'}}>{user?.displayName ?? "User"}</h5>
-
-                        <Image src={user?.picture ?? "https://cdn-icons-png.flaticon.com/512/149/149071.png"} className="rounded-circle" style={{cursor: 'pointer', width: `${pfp}px`, height: `${pfp}px`}} onClick={() => navigate('/dashboard')}/>
-                    </Nav>
+                    </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
