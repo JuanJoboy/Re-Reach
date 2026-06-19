@@ -2,7 +2,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 export default function Audience({ scrollToSection }) {
   return (
-    <section id="printer" className="bg-white py-5">
+    <section id="printer" className="bg-cream py-5">
       <Container className="py-4">
         <p className="text-uppercase tracking-wider fw-bold text-pal-terra small mb-1">Get Involved</p>
         <h2 className="fw-extrabold text-pal-green mb-4 h1">Three ways to give a hand</h2>

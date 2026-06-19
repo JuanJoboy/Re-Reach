@@ -2,7 +2,7 @@ import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 
 export default function Designs() {
   return (
-    <section id="designs" className="bg-pal-cream py-5">
+    <section id="designs" className="bg-pal-white py-5">
       <Container className="py-4">
         <p className="text-uppercase tracking-wider fw-bold text-pal-terra small mb-1">Print Files</p>
         <h2 className="fw-bold text-pal-green mb-2 h1">Download the designs</h2>
@@ -12,7 +12,7 @@ export default function Designs() {
 
         <Row className="g-3 mb-5">
           <Col sm={6} md={3}>
-            <Card className="h-100 border-1 bg-white">
+            <Card className="h-100 border bg-white">
               <div className="text-center py-4 fs-1 bg-light">✋</div>
               <Card.Body className="p-3">
                 <Badge bg="none" style={{ backgroundColor: 'var(--green-light)', color: 'var(--green)' }} className="mb-2 uppercase">⭐ Recommended</Badge>
@@ -27,7 +27,7 @@ export default function Designs() {
           </Col>
 
           <Col sm={6} md={3}>
-            <Card className="h-100 border-1 bg-white">
+            <Card className="h-100 border bg-white">
               <div className="text-center py-4 fs-1 bg-light">🖐️</div>
               <Card.Body className="p-3">
                 <Badge bg="none" style={{ backgroundColor: '#FEF3E2', color: '#B45309' }} className="mb-2 uppercase">👦 Children</Badge>
@@ -42,7 +42,7 @@ export default function Designs() {
           </Col>
 
           <Col sm={6} md={3}>
-            <Card className="h-100 border-1 bg-white">
+            <Card className="h-100 border bg-white">
               <div className="text-center py-4 fs-1 bg-light">🦾</div>
               <Card.Body className="p-3">
                 <Badge bg="none" style={{ backgroundColor: '#EEF2FF', color: '#3730A3' }} className="mb-2 uppercase">💪 Elbow-powered</Badge>
@@ -57,7 +57,7 @@ export default function Designs() {
           </Col>
 
           <Col sm={6} md={3}>
-            <Card className="h-100 border-1 bg-white border-dashed opacity-75" style={{ borderStyle: 'dashed' }}>
+            <Card className="h-100 border bg-white border-dashed opacity-75" style={{ borderStyle: 'dashed' }}>
               <div className="text-center py-4 fs-1 bg-transparent text-muted">＋</div>
               <Card.Body className="p-3 text-center">
                 <Badge bg="secondary" className="mb-2">Coming soon</Badge>
