@@ -1,0 +1,65 @@
+
+                {/* 4. Medical Anchor Metrics - Large Eye-Catching Stats */}
+                <Row className="g-4 mb-5">
+                    <Col md={12}>
+                        <div className="bg-pal-green text-white p-4 rounded-3 shadow-sm">
+                            <div className="d-flex align-items-center gap-2 mb-3">
+                                <Activity className="text-pal-sand" size={24} />
+                                <h4 className="fw-bold m-0 text-white text-uppercase tracking-wider" style={{ fontSize: '1rem' }}>
+                                    Medical Anchor: IMC Field Hospital
+                                </h4>
+                            </div>
+                            <Row className="g-3 row-cols-2 row-cols-md-4 text-start">
+                                <Col className="border-end border-white-10">
+                                    <span className="counter-num text-pal-sand fw-extrabold d-block line-height-1">68k</span>
+                                    <small className="text-white-50 d-block">Square-foot footprint containing 26 modular units & 17 tents</small>
+                                </Col>
+                                <Col className="border-end border-white-10">
+                                    <span className="counter-num text-white fw-extrabold d-block line-height-1">160+</span>
+                                    <small className="text-white-50 d-block">Trained medical health workers on deployment</small>
+                                </Col>
+                                <Col className="border-end border-white-10">
+                                    <span className="counter-num text-white fw-extrabold d-block line-height-1">160</span>
+                                    <small className="text-white-50 d-block">Patient beds ready for rehabilitation cases</small>
+                                </Col>
+                                <Col>
+                                    <span className="counter-num text-pal-sand fw-extrabold d-block line-height-1">4</span>
+                                    <small className="text-white-50 d-block">Active operating theatres with restored surgical capacity</small>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
+
+                {/* 5. Production Separation & Field Training Pipeline */}
+                <Row className="g-4 mb-5">
+                    <Col md={6}>
+                        <div
+                            className="p-4 bg-white border rounded-3 h-100"
+                            style={{ borderLeft: '4px solid var(--green)' }}
+                        >
+                            <div className="d-flex align-items-center gap-2 mb-3">
+                                <Hammer className="text-pal-green" size={24} />
+                                <h4 className="fw-bold m-0 text-pal-green h5">Print-Only Protocol for Remote Fabricators</h4>
+                            </div>
+                            <p className="text-muted small mb-0" style={{ lineHeight: '1.6' }}>
+                                Volunteer printer operators do not need to worry about complex assembly, hardware calibration, or custom adjustments. Your sole operational objective is to execute clean, structurally sound component prints in PETG and ship them as raw components. Complicated device assembly is handled entirely downstream by specialized ground teams.
+                            </p>
+                        </div>
+                    </Col>
+
+                    <Col md={6}>
+                        <div
+                            className="p-4 bg-white border rounded-3 h-100"
+                            style={{ borderLeft: '4px solid var(--green)' }}
+                        >
+                            <div className="d-flex align-items-center gap-2 mb-3">
+                                <Users className="text-pal-green" size={24} />
+                                <h4 className="fw-bold m-0 text-pal-green h5">On-Ground Assembly & Fitting Teams</h4>
+                            </div>
+                            <p className="text-muted small mb-0" style={{ lineHeight: '1.6' }}>
+                                Local volunteers, healthcare workers, and families undergo targeted on-the-ground training pipelines directly within the community centers and clinics. These groups are systematically educated on structural connection mechanics, leather padding installation, tension-string replacement, and functional testing to verify proper movement before a child takes the device home.
+                            </p>
+                        </div>
+                    </Col>
+                </Row>

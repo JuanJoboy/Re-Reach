@@ -1,16 +1,18 @@
 /* index.css */
 @import 'bootstrap/dist/css/bootstrap.min.css';
+/* 1. IMPORT MONTSERRAT FROM GOOGLE FONTS WITH MULTIPLE WEIGHTS */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;0,800;0,900;1,400&display=swap');
 
 :root {
   --green:       #2D4A1E;
   --green-mid:   #3D6228;
   --green-light: #E8F0E1;
-  --cream:       #F7F3EC;
-  --sand:        #D4B896;
-  --terra:       #C8502A;
-  --terra-dark:  #A03E1F;
-  --ink:         #1A1A1A;
-  --muted:       #5C5C5C;
+  --cream:       #f8e8d4;
+  --sand:        #ceb594;
+  --terra:       #5c1b14;
+  --terra-dark:  #431611;
+  --ink:         #4a3f2b;
+  --muted:       #6e624e;
   --white:       #FFFFFF;
   --radius:      6px;
 }
@@ -19,42 +21,48 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
+/* 2. OVERRIDE ENTIRE APP BASELINE, INPUTS, SELECTS, TEXTAREAS, AND BUTTONS */
+body, input, select, textarea, button, .form-control, .form-select, .btn {
+  font-family: 'Montserrat', sans-serif !important;
   background-color: var(--cream) !important;
   color: var(--ink);
   line-height: 1.6;
-  /* INCREASED: Bump up baseline prose from 400 to 500 */
   font-weight: 500;
+}
+
+.navbar-toggler {
+  background-color: transparent !important;
+}
+
+body {
+  background-color: var(--cream) !important;
 }
 
 /* Base Typographic Overrides */
 h1, h2, h3, h4, h5, h6, .display-2, .display-6 {
+  font-family: 'Montserrat', sans-serif !important;
   color: var(--green);
-  /* INCREASED: Ensure all standard headings default to bold */
   font-weight: 700;
 }
 
 /* Custom Component Overrides for Maximum Weight */
 .display-2 {
-  /* INCREASED: Heavy structural title emphasis */
   font-weight: 800 !important;
   letter-spacing: -0.03em;
 }
 
+/* 3. REPLACED 'ARIAL NARROW' WITH MONTSERRAT HEAVY WEIGHTS FOR SYSTEM SYNC */
 .counter-num {
   font-size: clamp(2.4rem, 6vw, 4rem);
-  font-family: 'Arial Narrow', 'Impact', Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
   letter-spacing: -.02em;
-  /* INCREASED: Match heavy statistical matrix style */
   font-weight: 900;
 }
 
 .step-num {
   font-size: 3rem;
-  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
   color: rgba(212, 184, 150, .3);
-  /* INCREASED: Match index number thickness */
   font-weight: 900;
 }
 
@@ -77,12 +85,33 @@ h1, h2, h3, h4, h5, h6, .display-2, .display-6 {
   position: relative;
   z-index: 2;
 }
+
+/* Global Background Utility Classes */
 .bg-pal-green { background-color: var(--green) !important; }
+.bg-pal-green-mid { background-color: var(--green-mid) !important; }
+.bg-pal-green-light { background-color: var(--green-light) !important; }
 .bg-pal-cream { background-color: var(--cream) !important; }
+.bg-pal-sand  { background-color: var(--sand) !important; }
 .bg-pal-terra { background-color: var(--terra) !important; }
-.text-pal-sand { color: var(--sand) !important; }
-.text-pal-terra { color: var(--terra) !important; }
+.bg-pal-terra-dark { background-color: var(--terra-dark) !important; }
+.bg-pal-red-accent { background-color: var(--red-accent) !important; }
+.bg-pal-ink { background-color: var(--ink) !important; }
+.bg-pal-muted { background-color: var(--muted) !important; }
+.bg-pal-white { background-color: var(--white) !important; }
+
+/* Global Text Utility Classes */
 .text-pal-green { color: var(--green) !important; }
+.text-pal-green-mid { color: var(--green-mid) !important; }
+.text-pal-green-light { color: var(--green-light) !important; }
+.text-pal-cream { color: var(--cream) !important; }
+.text-pal-sand  { color: var(--sand) !important; }
+.text-pal-terra { color: var(--terra) !important; }
+.text-pal-terra-dark { color: var(--terra-dark) !important; }
+.text-pal-red-accent { color: var(--red-accent) !important; }
+.text-pal-ink { color: var(--ink) !important; }
+.text-pal-muted { color: var(--muted) !important; }
+.text-pal-white { color: var(--white) !important; }
+
 .step-box {
   background: rgba(255, 255, 255, .06);
   border: 1px solid rgba(255, 255, 255, .1);

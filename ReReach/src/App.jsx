@@ -5,13 +5,10 @@ import NavbarComponent from './components/Navbar';
 import Header from './pages/Header';
 import Context from './pages/Context';
 import PilotMap from './pages/PilotMap';
-import Audience from './pages/Audience';
-import Designs from './pages/Designs';
+import CaseMatrix from './pages/CaseMatrix';
 import HowItWorks from './pages/HowItWorks';
-import ImpactTracker from './pages/ImpactTracker';
-import Shipping from './pages/Shipping';
 import Donate from './pages/Donate';
-import Affiliates from './pages/Affiliates';
+import RequestForm from './pages/RequestForm';
 import Footer from './pages/Footer';
 
 export default function App()
@@ -33,13 +30,10 @@ export default function App()
             <main className="grow">
                 <Context />
                 <PilotMap />
-                <Audience scrollToSection={scrollToSection} />
-                <Designs />
+                <CaseMatrix />
                 <HowItWorks />
-                <ImpactTracker />
-                <Shipping />
                 <Donate />
-                <Affiliates scrollToSection={scrollToSection}  />
+                <RequestForm />
 
                 <Routes>
                     <Route path="*" element={<Navigate to="/Re-Reach/" replace />} />

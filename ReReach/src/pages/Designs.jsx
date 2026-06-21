@@ -1,4 +1,5 @@
 import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
+import { Info, Truck, RefreshCw } from 'lucide-react';
 
 export default function Designs() {
   return (
@@ -63,6 +64,40 @@ export default function Designs() {
                 <Badge bg="secondary" className="mb-2">Coming soon</Badge>
                 <h5 className="text-muted fw-bold">Add design here</h5>
                 <p className="text-muted small">Duplicate this configuration card to expand verified designs.</p>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+
+        {/* Material Supply & Reimbursement Program Notice */}
+        <Row className="mb-4">
+          <Col md={12}>
+            <Card className="border-0 bg-pal-cream p-4 rounded-3 shadow-sm">
+              <Card.Body className="p-0">
+                <div className="d-flex align-items-center gap-2 mb-3">
+                  <Info className="text-pal-terra" size={24} />
+                  <h4 className="fw-bold m-0 text-pal-green h5">Filament Supply & Reimbursement Program</h4>
+                </div>
+                <Row className="g-4">
+                  <Col md={6} className="d-flex gap-3 align-items-start">
+                    <Truck className="text-pal-green mt-1 shrink-0" size={20} />
+                    <div>
+                      <strong className="d-block text-ink small text-uppercase font-monospace tracking-wider">1. Material Provision</strong>
+                      <span className="text-muted small">
+                        If you lack printing materials to get the device ready, submit your delivery details via our dispatch form. We will ship the verified PETG filament and required hardware packs directly to your address.
+                      </span>
+                    </div>
+                  </Col>
+                  <Col md={6} className="d-flex gap-3 align-items-start">
+                    <RefreshCw className="text-pal-green mt-1 shrink-0" size={20} />
+                    <div>
+                      <strong className="d-block text-ink small text-uppercase font-monospace tracking-wider">2. Cost Reimbursement</strong>
+                      <span className="text-muted small">
+                        Whether you buy materials independently or print from your existing stock, you are eligible for a full refund. Once the fabricated mechanical arm is shipped and received at our staging depot for Palestine distribution, log your receipt to clear reimbursement processing.
+                      </span>
+                    </div>
+                  </Col>
+                </Row>
               </Card.Body>
             </Card>
           </Col>
