@@ -5,7 +5,7 @@ export default function HowItWorks()
     const steps = [
         { num: '01', title: 'Download & print', desc: 'Download the patient STL file and print in PETG or PLA at the designated scale.' },
         { num: '02', title: 'Ship to our hub', desc: 'Pack the raw plastic parts securely and dispatch them via your local post office to our regional depot.' },
-        { num: '03', title: 'Quality check', desc: 'Our team will inspect incoming components and pairs them with mechanical hardware kits.' },
+        { num: '03', title: 'Quality check', desc: 'Our team will inspect incoming components and pair them with mechanical hardware kits.' },
         { num: '04', title: 'On-ground assembly', desc: 'Verified components will be taken to local workshops to complete assembly and final patient fittings.' },
         { num: '05', title: 'Fitted & followed up', desc: 'Recipients receive their custom device. With growing children being remeasured every few months for replacement prints.' },
     ];
@@ -44,9 +44,9 @@ export default function HowItWorks()
                     <Row className="g-3 row-cols-1 row-cols-md-3 mb-4">
                         <Col>
                             <div className="bg-pal-cream p-4 h-100 rounded-3 border border-light shadow-sm">
-                                <h5 className="fw-bold text-pal-green small mb-3 text-uppercase font-monospace tracking-wider">📐 Production</h5>
+                                <h5 className="fw-bold text-pal-green mb-3 text-uppercase font-monospace tracking-wider">📐 Production</h5>
 
-                                <ul className="list-unstyled d-flex flex-column gap-2 text-muted small m-0">
+                                <ul className="list-unstyled d-flex flex-column gap-2 text-black small m-0">
                                     <li>→ Ensure scaling settings match the patient profile identically before slicing.</li>
                                     <li>→ Do not scale down or change proportions manually to save filament volume.</li>
                                 </ul>
@@ -55,9 +55,9 @@ export default function HowItWorks()
 
                         <Col>
                             <div className="bg-pal-cream p-4 h-100 rounded-3 border border-light shadow-sm">
-                                <h5 className="fw-bold text-pal-green small mb-3 text-uppercase font-monospace tracking-wider">📦 Component Packing</h5>
+                                <h5 className="fw-bold text-pal-green mb-3 text-uppercase font-monospace tracking-wider">📦 Component Packing</h5>
 
-                                <ul className="list-unstyled d-flex flex-column gap-2 text-muted small m-0">
+                                <ul className="list-unstyled d-flex flex-column gap-2 text-black small m-0">
                                     <li>→ Include all structural plastic parts printed for the specific case.</li>
                                     <li>→ Wrap items securely in bubble wrap to protect structural integrity during transport.</li>
                                     <li>→ Wrap individual components separately to prevent plastic-on-plastic friction scars.</li>
@@ -67,9 +67,9 @@ export default function HowItWorks()
 
                         <Col>
                             <div className="bg-pal-cream p-4 h-100 rounded-3 border border-light shadow-sm">
-                                <h5 className="fw-bold text-pal-green small mb-3 text-uppercase font-monospace tracking-wider">✈️ Post Office Dispatch</h5>
+                                <h5 className="fw-bold text-pal-green mb-3 text-uppercase font-monospace tracking-wider">✈️ Post Office Dispatch</h5>
 
-                                <ul className="list-unstyled d-flex flex-column gap-2 text-muted small m-0">
+                                <ul className="list-unstyled d-flex flex-column gap-2 text-black small m-0">
                                     <li>→ Pack the bubble-wrapped components into a sturdy, standard cardboard shipping box.</li>
                                     <li>→ Take the box to any local post office or commercial courier outlet.</li>
                                     <li>→ Declare package contents accurately as: "3D printed plastic toy components - No commercial value."</li>
@@ -80,12 +80,10 @@ export default function HowItWorks()
 
                     {/* Consolidation Address block */}
                     <div className="bg-pal-cream border border-light p-4 rounded-3 shadow-sm">
-                        <h5 className="text-pal-terra fw-bold small mb-2 text-uppercase font-monospace tracking-wider">Regional Shipping Address</h5>
+                        <h5 className="text-pal-terra fw-bold mb-2 text-uppercase font-monospace tracking-wider">Shipping Address</h5>
 
-                        <address className="m-0 text-muted small font-monospace lh-lg">
-                            [Insert Street Address Lines]<br />
-                            [Insert City / Sector Coordination Area]<br />
-                            [Insert Postal Code and Country - Jordan / Egypt Hub]<br />
+                        <address className="m-0 text-black large font-monospace lh-lg" style={{ letterSpacing: '0.15em', fontWeight: '900' }}>
+                            [Shuhada al-Aqsa Hospital, Deir al-Balah, Deir al-Balah Governorate, Gaza Strip, Palestine]<br />
                         </address>
                     </div>
                 </div>

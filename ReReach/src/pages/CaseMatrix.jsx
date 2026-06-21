@@ -1,8 +1,104 @@
+import { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { User, Palette, NotebookTextIcon, Download, Cpu, Clock, Info, Truck, RefreshCw, CreditCard, Upload } from 'lucide-react';
+import { User, Palette, NotebookTextIcon, Download, Cpu, Clock, Info, Truck, LucideBadgeDollarSign, CreditCard, Upload } from 'lucide-react';
+import { jsPDF } from 'jspdf';
 
 export default function CaseMatrix()
 {
+    // State management for form fields
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        address: ''
+    });
+
+    const handleInputChange = (e) => {
+        const { id, value } = e.target;
+        const fieldMap = {
+            orderName: 'fullName',
+            orderEmail: 'email',
+            orderPhone: 'phone',
+            orderAddress: 'address'
+        };
+        setFormData(prev => ({
+            ...prev,
+            [fieldMap[id]]: value
+        }));
+    };
+
+    const generateInvoicePDF = (e) => {
+        e.preventDefault();
+
+        // 1. Generate unique serial number (Format: H4G-YYYYMMDD-RANDOM)
+        const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+        const randomId = Math.floor(1000 + Math.random() * 9000);
+        const serialNumber = `H4G-${dateStr}-${randomId}`;
+
+        // 2. Initialise jsPDF
+        const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        // 3. Render PDF Content Structure
+        doc.setFont('Helvetica', 'bold');
+        doc.setFontSize(22);
+        doc.setTextColor(45, 74, 30); // Theme brand colour (--green)
+        doc.text('RE:REACH', 20, 20);
+
+        doc.setFontSize(12);
+        doc.setTextColor(200, 80, 42); // Theme brand accent (--terra)
+        doc.text('FILAMENT ORDER RECEIPT', 20, 28);
+
+        // Decorative horizontal bar
+        doc.setDrawColor(200, 80, 42);
+        doc.setLineWidth(0.5);
+        doc.line(20, 32, 190, 32);
+
+        // Metadata Block
+        doc.setFont('Helvetica', 'normal');
+        doc.setTextColor(26, 26, 26);
+        doc.setFontSize(10);
+        doc.text(`Date: ${new Date().toLocaleDateString('en-AU')}`, 20, 42);
+        doc.text('Item: 3D Printing Filament', 20, 48);
+        doc.text('Amount Paid: $35.00 AUD', 20, 54);
+
+        // Customer Details Section
+        doc.setFont('Helvetica', 'bold');
+        doc.setFontSize(12);
+        doc.setTextColor(45, 74, 30);
+        doc.text('DELIVERY & CONTACT INFORMATION', 20, 68);
+
+        doc.setFont('Helvetica', 'normal');
+        doc.setTextColor(26, 26, 26);
+        doc.setFontSize(10);
+        doc.text(`Name: ${formData.fullName}`, 20, 76);
+        doc.text(`Email: ${formData.email}`, 20, 82);
+        doc.text(`Phone: ${formData.phone}`, 20, 88);
+
+        // Handle multiline address rendering safely
+        doc.text(`Shipping Address: ${doc.splitTextToSize(formData.address, 150)}`, 20, 94);
+
+        // Footer terms notice
+        doc.setFontSize(9);
+        doc.setTextColor(92, 92, 92);
+        doc.text('This document serves as formal proof of purchase for a refund', 20, 250);
+
+        // 4. Output uniquely generated Serial Number at bottom boundary
+        doc.setDrawColor(232, 240, 225);
+        doc.line(20, 265, 190, 265);
+
+        doc.setFont('Helvetica', 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(200, 80, 42);
+        doc.text(`SERIAL NUMBER: ${serialNumber}`, 20, 274);
+
+        // 5. Fire direct stream download trigger on browser thread
+        doc.save(`Order_Receipt_${serialNumber}.pdf`);
+    };
+
     const patients = [
         {
             id: 1,
@@ -10,7 +106,7 @@ export default function CaseMatrix()
             age: 8,
             amputationType: "Transradial (Below Elbow)",
             color: "Desert Tan (Skin Tone matching)",
-            stlUrl: "https://storage.hands4gaza.org/stl/ahmad-masri-phoenix-v3-115.zip",
+            stlUrl: "/Re-Reach/designs/e-NABLE-Phoenix-Hand-v3-4056253.zip",
             productionSpecs: {
                 deviceModel: "Phoenix Hand v3",
                 scalingFactor: "115%",
@@ -26,9 +122,9 @@ export default function CaseMatrix()
             age: 14,
             amputationType: "Wrist Disarticulation",
             color: "Emerald Green & White accents",
-            stlUrl: "https://storage.hands4gaza.org/stl/fatima-sour-kinetic-130.zip",
+            stlUrl: "/Re-Reach/designs/The-UnLimbited-Arm-v2.1.zip",
             productionSpecs: {
-                deviceModel: "Kinetic Hand",
+                deviceModel: "Unlimbited Arm v2.1",
                 scalingFactor: "130%",
                 materialTarget: "PETG / PLA",
                 estPrintTime: "18h 20m"
@@ -42,7 +138,7 @@ export default function CaseMatrix()
             age: 6,
             amputationType: "Transradial (Below Elbow)",
             color: "Bright Sky Blue",
-            stlUrl: "https://storage.hands4gaza.org/stl/youssef-khoury-phoenix-v3-105.zip",
+            stlUrl: "/Re-Reach/designs/e-NABLE-Phoenix-Hand-v3-4056253.zip",
             productionSpecs: {
                 deviceModel: "Phoenix Hand v3",
                 scalingFactor: "105%",
@@ -58,7 +154,7 @@ export default function CaseMatrix()
             age: 10,
             amputationType: "Transradial (Below Elbow)",
             color: "Pure White & Red accents",
-            stlUrl: "https://storage.hands4gaza.org/stl/nour-darwish-unlimbited-2.1-120.zip",
+            stlUrl: "/Re-Reach/designs/The-UnLimbited-Arm-v2.1.zip",
             productionSpecs: {
                 deviceModel: "Unlimbited Arm v2.1",
                 scalingFactor: "120%",
@@ -74,7 +170,7 @@ export default function CaseMatrix()
             age: 11,
             amputationType: "Wrist Disarticulation",
             color: "Matte Charcoal Grey",
-            stlUrl: "https://storage.hands4gaza.org/stl/ziad-haddad-phoenix-v3-122.zip",
+            stlUrl: "/Re-Reach/designs/e-NABLE-Phoenix-Hand-v3-4056253.zip",
             productionSpecs: {
                 deviceModel: "Phoenix Hand v3",
                 scalingFactor: "122%",
@@ -90,7 +186,7 @@ export default function CaseMatrix()
             age: 5,
             amputationType: "Transradial (Below Elbow)",
             color: "Vibrant Sunflower Yellow",
-            stlUrl: "https://storage.hands4gaza.org/stl/amal-tazi-phoenix-v3-100.zip",
+            stlUrl: "/Re-Reach/designs/e-NABLE-Phoenix-Hand-v3-4056253.zip",
             productionSpecs: {
                 deviceModel: "Phoenix Hand v3",
                 scalingFactor: "100%",
@@ -112,9 +208,9 @@ export default function CaseMatrix()
                         <h1 className="display-3 text-uppercase tracking-widest fw-black text-pal-terra mb-2" style={{ letterSpacing: '0.15em', fontWeight: '900' }}>
                             Patient Registry
                         </h1>
-                        <p className="lead fw-bold text-ink fs-5 m-0" style={{ lineHeight: '1.5' }}>
-                            All active cases requiring remote fabrication. Download pre-scaled STL packages verified by the remote design desk.
-                        </p>
+                        <h2 className="display-4 fw-black text-pal-green mb-4" style={{ fontWeight: '900', letterSpacing: '-0.03em' }}>
+                            All active cases requiring prosthetics
+                        </h2>
                     </Col>
                 </Row>
 
@@ -133,8 +229,6 @@ export default function CaseMatrix()
                             return (
                                 <Col key={patient.id} md={4}>
                                     <Card className="h-100 border-0 bg-white shadow-sm overflow-hidden rounded-3">
-
-                                        {/* Top Square Image Container Space */}
                                         <div
                                             className="bg-light position-relative d-flex align-items-center justify-content-center border-bottom"
                                             style={{ width: '100%', aspectRatio: '1 / 1' }}
@@ -145,92 +239,69 @@ export default function CaseMatrix()
                                             </div>
                                         </div>
 
-                                        {/* Lower Informational Data Block */}
                                         <Card.Body className="p-4 d-flex flex-column gap-3">
-
-                                            {/* Name and Age Group */}
                                             <div className="border-bottom border-light pb-2">
-                                                <h4
-                                                    className="fw-black text-pal-green m-0 mb-1"
-                                                    style={{ fontWeight: '800' }}
-                                                >
+                                                <h4 className="fw-black text-pal-green m-0 mb-1" style={{ fontWeight: '800' }}>
                                                     {patient.name}
                                                 </h4>
-
-                                                <span
-                                                    className="badge bg-pal-green text-pal-sand font-monospace fw-bold px-2 py-1"
-                                                    style={{ fontSize: '0.75rem' }}
-                                                >
+                                                <span className="badge bg-pal-green text-pal-sand font-monospace fw-bold px-2 py-1" style={{ fontSize: '0.75rem' }}>
                                                     Age: {patient.age} years
                                                 </span>
                                             </div>
 
-                                            {/* Machine Production Blueprint Metrics */}
                                             <div className="text-start">
                                                 <div className="d-flex align-items-center gap-2 mb-2 text-pal-green fw-bold small text-uppercase font-monospace tracking-wider">
                                                     <Cpu size={16} />
                                                     <span>Prosthesis</span>
                                                 </div>
-
                                                 <ul className="list-unstyled font-monospace text-muted small m-0 ps-1 d-flex flex-column gap-1">
-                                                    <li>
-                                                        <span className="text-ink fw-bold">Model:</span> {patient.productionSpecs.deviceModel}
-                                                    </li>
-                                                    <li>
-                                                        <span className="text-ink fw-bold">Scale:</span> {patient.productionSpecs.scalingFactor}
-                                                    </li>
-                                                    <li>
-                                                        <span className="text-ink fw-bold">Filament:</span> {patient.productionSpecs.materialTarget}
-                                                    </li>
+                                                    <li><span className="text-ink fw-bold">Model:</span> {patient.productionSpecs.deviceModel}</li>
+                                                    <li><span className="text-ink fw-bold">Scale:</span> {patient.productionSpecs.scalingFactor}</li>
+                                                    <li><span className="text-ink fw-bold">Filament:</span> {patient.productionSpecs.materialTarget}</li>
                                                 </ul>
                                             </div>
 
-                                            {/* Estimated Print Time Section */}
                                             <div className="text-start">
                                                 <div className="d-flex align-items-center gap-2 mb-1 text-pal-green fw-bold small text-uppercase font-monospace tracking-wider">
                                                     <Clock size={16} />
                                                     <span>Est. Print Time</span>
                                                 </div>
-
                                                 <p className="text-muted small m-0 ps-1 font-monospace fw-bold text-ink">
                                                     {patient.productionSpecs.estPrintTime}
                                                 </p>
                                             </div>
 
-                                            {/* Colour Choice */}
                                             <div className="text-start">
                                                 <div className="d-flex align-items-center gap-2 mb-1 text-pal-green fw-bold small text-uppercase font-monospace tracking-wider">
                                                     <Palette size={16} />
                                                     <span>Colour</span>
                                                 </div>
-
                                                 <p className="text-muted small m-0 ps-1 fw-medium">
                                                     {patient.color}
                                                 </p>
                                             </div>
 
-                                            {/* Additional Notes & Engravings */}
                                             <div className="text-start bg-pal-cream p-3 rounded-3 border border-light">
                                                 <div className="d-flex align-items-center gap-2 mb-1 text-pal-terra fw-bold small text-uppercase font-monospace tracking-wider">
                                                     <NotebookTextIcon size={14} />
                                                     <span>Notes</span>
                                                 </div>
-
                                                 <p className="text-ink small m-0 lh-base style-italic">
                                                     "{patient.notes}"
                                                 </p>
                                             </div>
 
-                                            {/* Action Button: Download Scale Verified STL Assets */}
                                             <a
                                                 href={patient.stlUrl}
+                                                download
+                                                target="_blank"
+                                                rel="noopener noreferrer"
                                                 className="btn bg-pal-terra w-100 d-flex align-items-center justify-content-center gap-2 mt-auto py-2 text-uppercase font-monospace tracking-wider fw-bold text-white shadow-sm"
                                                 style={{ fontSize: '0.85rem' }}
                                             >
                                                 <Download size={16} />
                                                 Download Pre-Scaled STLs
                                             </a>
-
                                         </Card.Body>
                                     </Card>
                                 </Col>
@@ -244,25 +315,25 @@ export default function CaseMatrix()
                     <Col md={12}>
                         <Card className="border-0 bg-white p-4 rounded-3 shadow-sm">
                             <Card.Body className="p-0">
-                                <div className="d-flex align-items-center gap-2 mb-3">
+                                <div className="d-flex align-items-center gap-2 mb-4">
                                     <Info className="text-pal-terra" size={24} />
                                     <h4 className="fw-bold m-0 text-pal-green h5">Filament Supply & Reimbursement Program</h4>
                                 </div>
                                 <Row className="g-4">
                                     <Col md={6} className="d-flex gap-3 align-items-start">
-                                        <Truck className="text-pal-green mt-1 shrink-0" size={20} />
+                                        <Truck className="text-pal-green flex-shrink-0" size={32} />
                                         <div>
-                                            <strong className="d-block text-ink small text-uppercase font-monospace tracking-wider">1. Material Provision</strong>
-                                            <span className="text-muted small">
+                                            <strong className="d-block text-ink fs-6 text-uppercase font-monospace tracking-wider mb-1">1. Material Provision</strong>
+                                            <span className="text-muted small lh-base d-block">
                                                 If you lack printing materials to get the device ready, submit your delivery details via our dispatch form below. We will ship the filament and required packs directly to your address.
                                             </span>
                                         </div>
                                     </Col>
                                     <Col md={6} className="d-flex gap-3 align-items-start">
-                                        <RefreshCw className="text-pal-green mt-1 shrink-0" size={20} />
+                                        <LucideBadgeDollarSign className="text-pal-green flex-shrink-0" size={32} />
                                         <div>
-                                            <strong className="d-block text-ink small text-uppercase font-monospace tracking-wider">2. Cost Reimbursement</strong>
-                                            <span className="text-muted small">
+                                            <strong className="d-block text-ink fs-6 text-uppercase font-monospace tracking-wider mb-1">2. Cost Reimbursement</strong>
+                                            <span className="text-muted small lh-base d-block">
                                                 If you purchased from us, you are eligible for a full refund. Log your receipt, and when the arm has reached the city, a member from our team will contact you regarding your refund.
                                             </span>
                                         </div>
@@ -282,25 +353,25 @@ export default function CaseMatrix()
                                 <h3 className="fw-black text-uppercase m-0 text-pal-green font-monospace h4" style={{ fontWeight: '800' }}>Order Assembly Kits & Filament | $35</h3>
                             </div>
 
-                            <Form>
+                            <Form onSubmit={generateInvoicePDF}>
                                 <h5 className="text-uppercase font-monospace text-muted small fw-bold mb-3 tracking-wider">Contact Information</h5>
                                 <Row className="g-3 mb-4">
                                     <Col md={6}>
                                         <Form.Group controlId="orderName">
                                             <Form.Label className="small font-monospace text-ink fw-bold">Full Name</Form.Label>
-                                            <Form.Control type="text" placeholder="John Doe" className="rounded-2 border-light bg-pal-green-light font-monospace" />
+                                            <Form.Control type="text" placeholder="John Doe" className="rounded-2 border-light bg-pal-green-light font-monospace" value={formData.fullName} onChange={handleInputChange} required />
                                         </Form.Group>
                                     </Col>
                                     <Col md={6}>
                                         <Form.Group controlId="orderEmail">
                                             <Form.Label className="small font-monospace text-ink fw-bold">Email Address</Form.Label>
-                                            <Form.Control type="email" placeholder="john@example.com" className="rounded-2 border-light bg-pal-green-light font-monospace" />
+                                            <Form.Control type="email" placeholder="john@example.com" className="rounded-2 border-light bg-pal-green-light font-monospace" value={formData.email} onChange={handleInputChange} required />
                                         </Form.Group>
                                     </Col>
                                     <Col md={12}>
                                         <Form.Group controlId="orderPhone">
                                             <Form.Label className="small font-monospace text-ink fw-bold">Phone Number</Form.Label>
-                                            <Form.Control type="tel" placeholder="+1 (555) 000-0000" className="rounded-2 border-light bg-pal-green-light font-monospace" />
+                                            <Form.Control type="tel" placeholder="+1 000 000 000" className="rounded-2 border-light bg-pal-green-light font-monospace" value={formData.phone} onChange={handleInputChange} required />
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -308,7 +379,7 @@ export default function CaseMatrix()
                                 <h5 className="text-uppercase font-monospace text-muted small fw-bold mb-3 tracking-wider">Shipping Address</h5>
                                 <Form.Group controlId="orderAddress" className="mb-4">
                                     <Form.Label className="small font-monospace text-ink fw-bold">Street Address, City, State</Form.Label>
-                                    <Form.Control as="textarea" rows={3} placeholder="123 Main Street&#10;Melbourne, VIC&#10;Australia" className="rounded-2 border-light bg-pal-green-light font-monospace" />
+                                    <Form.Control as="textarea" rows={3} placeholder="123 Main Street&#10;Melbourne, VIC&#10;Australia" className="rounded-2 border-light bg-pal-green-light font-monospace" value={formData.address} onChange={handleInputChange} required />
                                 </Form.Group>
 
                                 <h5 className="text-uppercase font-monospace text-muted small fw-bold mb-3 tracking-wider">Payment Information</h5>
@@ -319,26 +390,26 @@ export default function CaseMatrix()
                                                 <Form.Label className="small font-monospace text-ink fw-bold d-flex align-items-center gap-2">
                                                     <CreditCard size={14} /> Card Number
                                                 </Form.Label>
-                                                <Form.Control type="text" placeholder="0000 0000 0000 0000" className="rounded-2 border-white font-monospace" />
+                                                <Form.Control type="text" placeholder="0000 0000 0000 0000" className="rounded-2 border-white font-monospace" required />
                                             </Form.Group>
                                         </Col>
                                         <Col md={6} { ...{ xs: 6 } }>
                                             <Form.Group controlId="cardExpiry">
                                                 <Form.Label className="small font-monospace text-ink fw-bold">Expiry Date</Form.Label>
-                                                <Form.Control type="text" placeholder="MM/YY" className="rounded-2 border-white font-monospace" />
+                                                <Form.Control type="text" placeholder="MM/YY" className="rounded-2 border-white font-monospace" required />
                                             </Form.Group>
                                         </Col>
                                         <Col md={6} { ...{ xs: 6 } }>
                                             <Form.Group controlId="cardCvc">
                                                 <Form.Label className="small font-monospace text-ink fw-bold">CVC</Form.Label>
-                                                <Form.Control type="text" placeholder="123" className="rounded-2 border-white font-monospace" />
+                                                <Form.Control type="text" placeholder="123" className="rounded-2 border-white font-monospace" required />
                                             </Form.Group>
                                         </Col>
                                     </Row>
                                 </Card>
 
                                 <Button type="submit" className="btn bg-pal-terra border-0 w-100 text-uppercase font-monospace tracking-wider fw-bold text-white py-3 shadow-sm rounded-2">
-                                    Purchase Materials & Hardware
+                                    Purchase Materials
                                 </Button>
                             </Form>
                         </Card>
@@ -350,45 +421,22 @@ export default function CaseMatrix()
                     <Col lg={8} className="mx-auto">
                         <Card className="border-0 bg-white p-4 p-md-5 rounded-3 shadow-sm">
                             <div className="d-flex align-items-center gap-2 mb-4 border-bottom pb-3">
-                                <RefreshCw className="text-pal-green" size={24} />
+                                <LucideBadgeDollarSign className="text-pal-green" size={24} />
                                 <h3 className="fw-black text-uppercase m-0 text-pal-green font-monospace h4" style={{ fontWeight: '800' }}>Submit Receipt for Reimbursement</h3>
                             </div>
 
                             <Form>
-                                <h5 className="text-uppercase font-monospace text-muted small fw-bold mb-3 tracking-wider">Volunteer Identification</h5>
-                                <Row className="g-3 mb-4">
-                                    <Col md={4}>
-                                        <Form.Group controlId="refundName">
-                                            <Form.Label className="small font-monospace text-ink fw-bold">Full Name</Form.Label>
-                                            <Form.Control type="text" placeholder="John Doe" className="rounded-2 border-light bg-pal-green-light font-monospace" />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col md={4}>
-                                        <Form.Group controlId="refundEmail">
-                                            <Form.Label className="small font-monospace text-ink fw-bold">Email Address</Form.Label>
-                                            <Form.Control type="email" placeholder="john@example.com" className="rounded-2 border-light bg-pal-green-light font-monospace" />
-                                        </Form.Group>
-                                    </Col>
-                                    <Col md={4}>
-                                        <Form.Group controlId="refundPhone">
-                                            <Form.Label className="small font-monospace text-ink fw-bold">Phone Number</Form.Label>
-                                            <Form.Control type="tel" placeholder="+1 (555) 000-0000" className="rounded-2 border-light bg-pal-green-light font-monospace" />
-                                        </Form.Group>
-                                    </Col>
-                                </Row>
-
-                                <h5 className="text-uppercase font-monospace text-muted small fw-bold mb-3 tracking-wider">Proof of Purchase</h5>
                                 <Form.Group controlId="refundFile" className="mb-4">
-                                    <Form.Label className="small font-monospace text-ink fw-bold">Upload Material / Shipping Invoice</Form.Label>
+                                    <Form.Label className="large font-monospace text-ink fw-bold">Upload Receipt</Form.Label>
                                     <div className="border-dashed border-2 border-light bg-pal-green-light rounded-3 p-4 text-center position-relative">
                                         <input type="file" className="position-absolute top-0 start-0 w-100 h-100 opacity-0 cursor-pointer" style={{ cursor: 'pointer' }} />
                                         <Upload className="text-muted mb-2 mx-auto" size={32} />
-                                        <span className="d-block small font-monospace text-muted">Click or drag receipt image / PDF here</span>
+                                        <span className="d-block small font-monospace text-muted">Upload PDF here</span>
                                     </div>
                                 </Form.Group>
 
                                 <Button type="submit" className="btn bg-pal-terra border-0 w-100 text-uppercase font-monospace tracking-wider fw-bold text-white py-3 shadow-sm rounded-2">
-                                    Submit Claim for Processing
+                                    Submit Receipt for Processing
                                 </Button>
                             </Form>
                         </Card>

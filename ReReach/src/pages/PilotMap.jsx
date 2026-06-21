@@ -75,7 +75,7 @@ export default function PilotMap()
                             <figcaption className="px-2 d-flex flex-column gap-1 text-muted" style={{ fontSize: '0.75rem', lineHeight: '1.4' }}>
                                 <span><em>Satellite mapping of Deir al-Balah distribution networks.</em></span>
                                 <span className="font-monospace text-uppercase fw-bold text-pal-terra tracking-wider" style={{ fontSize: '0.65rem' }}>
-                                    [ Operational Blueprint / 2026 ]
+                                    [ OCHA OpT / 2018 ]
                                 </span>
                             </figcaption>
                         </figure>

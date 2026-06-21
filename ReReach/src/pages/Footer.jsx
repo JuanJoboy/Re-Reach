@@ -29,7 +29,10 @@ export default function Footer({ scrollToSection })
 
                     <Col sm={6} md={3}>
                         <h5 className="text-pal-sand small text-uppercase fw-bold mb-3">Contact</h5>
-                        <p className="small m-0">support@reach.org</p>
+                        <ul className="list-unstyled small d-flex flex-column gap-1">
+                            <li><button onClick={() => scrollToSection('request-form')} className="btn btn-link text-white-50 text-decoration-none p-0 small text-start border-0 bg-transparent">support@reach.org</button></li>
+                            <li><button onClick={() => scrollToSection('donate')} className="btn btn-link text-white-50 text-decoration-none p-0 small text-start border-0 bg-transparent">+970 123 456 789</button></li>
+                        </ul>
                     </Col>
                 </Row>
 

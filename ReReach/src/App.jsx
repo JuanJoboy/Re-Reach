@@ -9,6 +9,7 @@ import CaseMatrix from './pages/CaseMatrix';
 import HowItWorks from './pages/HowItWorks';
 import Donate from './pages/Donate';
 import RequestForm from './pages/RequestForm';
+import FAQ from './pages/FAQ';
 import Footer from './pages/Footer';
 
 export default function App()
@@ -27,13 +28,14 @@ export default function App()
 
             <Header scrollToSection={scrollToSection} />
 
-            <main className="grow">
+            <main className="grow overflow-x-hidden">
                 <Context />
                 <PilotMap />
                 <CaseMatrix />
                 <HowItWorks />
                 <Donate />
                 <RequestForm />
+                <FAQ />
 
                 <Routes>
                     <Route path="*" element={<Navigate to="/Re-Reach/" replace />} />

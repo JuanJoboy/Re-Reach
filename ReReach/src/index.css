@@ -130,3 +130,31 @@ h1, h2, h3, h4, h5, h6, .display-2, .display-6 {
 .border-white-10 {
   border-color: rgba(255, 255, 255, 0.1) !important;
 }
+
+.accordion-item {
+    background-color: transparent !important;
+}
+
+.accordion-header .accordion-button {
+    background-color: #3D6228 !important; /* var(--green-mid) */
+    color: #FFFFFF !important;
+    box-shadow: none !important;
+    border-radius: 0px;
+}
+
+/* Remove internal Bootstrap focus borders */
+.accordion-header .accordion-button:focus {
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+/* Maintain background state when the item is expanded */
+.accordion-header .accordion-button:not(.collapsed) {
+    background-color: #3D6228 !important; /* var(--green-mid) */
+    color: #FFFFFF !important;
+}
+
+/* Fix standard Bootstrap dynamic SVG chevron color mapping to match light scheme */
+.accordion-header .accordion-button::after {
+    filter: brightness(0) invert(1) !important;
+}

@@ -41,7 +41,7 @@ export default function Header({scrollToSection})
                 </div>
 
                 <div className="d-flex gap-3 flex-wrap justify-content-center">
-                    <Button onClick={() => scrollToSection('printer')} variant="none" className="bg-pal-terra text-white px-5 py-3 font-weight-bold shadow-sm" style={{ borderColor: 'rgba(255,255,255,0.4)', fontSize: 'clamp(0.9rem, 1.2vw, 1.2rem)', borderRadius: 'var(--radius)' }}>
+                    <Button onClick={() => scrollToSection('case-matrix')} variant="none" className="bg-pal-terra text-white px-5 py-3 font-weight-bold shadow-sm" style={{ borderColor: 'rgba(255,255,255,0.4)', fontSize: 'clamp(0.9rem, 1.2vw, 1.2rem)', borderRadius: 'var(--radius)' }}>
                     I have a 3D printer →
                     </Button>
 
