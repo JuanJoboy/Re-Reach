@@ -9,7 +9,8 @@ export default function RequestForm()
         p1: null,
         p2: null,
         p3: null,
-        p4: null
+        p4: null,
+        childFace: null
     });
 
     const handleFileChange = (id, e) => {
@@ -39,7 +40,8 @@ export default function RequestForm()
             p1: null,
             p2: null,
             p3: null,
-            p4: null
+            p4: null,
+            childFace: null
         });
     };
 
@@ -119,7 +121,7 @@ export default function RequestForm()
                         <div className="mb-5">
                             <div className="d-flex align-items-center gap-2 mb-4 text-pal-green fw-black text-uppercase font-monospace tracking-wider border-bottom border-light pb-3 fs-4">
                                 <Camera size={24} strokeWidth={2.5} />
-                                <span>2. Clinical Diagnostics / التشخيص Сريري</span>
+                                <span>2. Clinical Diagnostics / التشخيص السريري</span>
                             </div>
 
                             <Row className="g-3">
@@ -195,6 +197,39 @@ export default function RequestForm()
                                         </Form.Group>
                                     </Col>
                                 ))}
+                            </Row>
+
+                            {/* Optional Child Face Photo Upload Block - Centred Layout */}
+                            <Row className="mt-4 justify-content-center">
+                                <Col md={6}>
+                                    <Form.Group>
+                                        <Form.Label className="small fw-black text-ink font-monospace d-block text-center" style={{ fontSize: '0.85rem' }}>
+                                            5. Optional Photo: Child's Face / صورة اختيارية: وجه الطفل
+                                        </Form.Label>
+                                        <div className="border bg-white p-3 text-center rounded-2 position-relative">
+                                            {files.childFace ? (
+                                                <div className="d-flex align-items-center justify-content-between bg-light p-2 rounded rounded-2">
+                                                    <span className="small font-monospace text-truncate pe-2">{files.childFace.name}</span>
+                                                    <button type="button" onClick={() => removeFile('childFace')} className="btn btn-link p-0 text-danger border-0 line-height-1">
+                                                        <X size={16} />
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <>
+                                                    <Upload size={20} className="text-muted mb-1 mx-auto d-block" />
+                                                    <span className="d-block text-muted font-monospace" style={{ fontSize: '0.7rem' }}>Select Photo Asset / اختر ملف الصورة</span>
+                                                    <Form.Control
+                                                        type="file"
+                                                        accept="image/*"
+                                                        onChange={(e) => handleFileChange('childFace', e)}
+                                                        className="position-absolute top-0 start-0 w-100 h-100 opacity-0 cursor-pointer"
+                                                        style={{ cursor: 'pointer' }}
+                                                    />
+                                                </>
+                                            )}
+                                        </div>
+                                    </Form.Group>
+                                </Col>
                             </Row>
                         </div>
 

@@ -5,6 +5,7 @@ import NavbarComponent from './components/Navbar';
 import Header from './pages/Header';
 import Context from './pages/Context';
 import PilotMap from './pages/PilotMap';
+import Designs from './pages/Designs';
 import CaseMatrix from './pages/CaseMatrix';
 import HowItWorks from './pages/HowItWorks';
 import Donate from './pages/Donate';
@@ -31,6 +32,7 @@ export default function App()
             <main className="grow overflow-x-hidden">
                 <Context />
                 <PilotMap />
+                <Designs />
                 <CaseMatrix />
                 <HowItWorks />
                 <Donate />

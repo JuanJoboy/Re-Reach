@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { User, Palette, NotebookTextIcon, Download, Cpu, Clock, Info, Truck, LucideBadgeDollarSign, CreditCard, Upload } from 'lucide-react';
+import { User, Palette, NotebookTextIcon, Download, Cpu, Clock, Truck, LucideBadgeDollarSign, CreditCard, Upload } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 
 export default function CaseMatrix()
@@ -311,17 +311,19 @@ export default function CaseMatrix()
                 </div>
 
                 {/* Material Supply & Reimbursement Program Notice */}
+                <div className="pt-5 mt-4">
+                    <h2 className="display-4 fw-black text-pal-green mb-4" style={{ fontWeight: '900', letterSpacing: '-0.03em' }}>
+                        Filament Supply & Reimbursement Program
+                    </h2>
+                </div>
+
                 <Row className="mb-5">
                     <Col md={12}>
                         <Card className="border-0 bg-white p-4 rounded-3 shadow-sm">
                             <Card.Body className="p-0">
-                                <div className="d-flex align-items-center gap-2 mb-4">
-                                    <Info className="text-pal-terra" size={24} />
-                                    <h4 className="fw-bold m-0 text-pal-green h5">Filament Supply & Reimbursement Program</h4>
-                                </div>
                                 <Row className="g-4">
                                     <Col md={6} className="d-flex gap-3 align-items-start">
-                                        <Truck className="text-pal-green flex-shrink-0" size={32} />
+                                        <Truck className="text-pal-green shrink-0" size={32} />
                                         <div>
                                             <strong className="d-block text-ink fs-6 text-uppercase font-monospace tracking-wider mb-1">1. Material Provision</strong>
                                             <span className="text-muted small lh-base d-block">
@@ -330,7 +332,7 @@ export default function CaseMatrix()
                                         </div>
                                     </Col>
                                     <Col md={6} className="d-flex gap-3 align-items-start">
-                                        <LucideBadgeDollarSign className="text-pal-green flex-shrink-0" size={32} />
+                                        <LucideBadgeDollarSign className="text-pal-green shrink-0" size={32} />
                                         <div>
                                             <strong className="d-block text-ink fs-6 text-uppercase font-monospace tracking-wider mb-1">2. Cost Reimbursement</strong>
                                             <span className="text-muted small lh-base d-block">
