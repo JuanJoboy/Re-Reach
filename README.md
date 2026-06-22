@@ -1,1 +1,2 @@
-A website built for the WORK3004 Unit at Curtin
+- A website built for the WORK3004 Unit at Curtin.
+- Not a real website affiliated with e-NABLE or Palestine.

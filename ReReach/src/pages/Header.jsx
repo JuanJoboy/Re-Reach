@@ -2,6 +2,21 @@ import { Container, Button } from 'react-bootstrap';
 
 export default function Header({scrollToSection})
 {
+    function Numbers(colour, number, text)
+    {
+        return <div className="text-center px-2">
+            <span className={`counter-num text-pal-${colour} fw-extrabold d-block`} style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', lineHeight: '1' }}>{number}</span>
+            <span className="text-white-50 text-uppercase tracking-wider d-block mt-2" style={{ fontSize: 'clamp(0.7rem, 1vw, 0.9rem)', fontWeight: '700' }}>{text}</span>
+        </div>
+    }
+
+    function UserButton(section, colour, text)
+    {
+        return <Button onClick={() => scrollToSection(section)} variant="none" className={`bg-pal-${colour} text-white px-5 py-3 font-weight-bold shadow-sm`} style={{ borderColor: 'rgba(255,255,255,0.4)', fontSize: 'clamp(0.9rem, 1.2vw, 1.2rem)', borderRadius: 'var(--radius)' }}>
+            {text}
+        </Button>
+    }
+
     return (
         <header id="hero" className="bg-pal-green text-white text-center hero-gradient position-relative d-flex align-items-center" style={{ minHeight: '100vh', paddingTop: '80px', paddingBottom: '40px' }}>
             <Container className="position-relative d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: '1200px' }}>
@@ -19,35 +34,15 @@ export default function Header({scrollToSection})
 
                 {/* Core Numerical Counters Matrix Box */}
                 <div className="d-flex flex-wrap gap-4 gap-md-5 justify-content-around px-4 py-4 mb-5 border border-white-10 rounded-3 w-100" style={{ maxWidth: '1100px', backgroundColor: 'rgba(255,255,255,0.07)' }}>
-                    <div className="text-center px-2">
-                        <span className="counter-num text-pal-sand fw-extrabold d-block" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', lineHeight: '1' }}>500</span>
-                        <span className="text-white-50 text-uppercase tracking-wider d-block mt-2" style={{ fontSize: 'clamp(0.7rem, 1vw, 0.9rem)', fontWeight: '700' }}>Parts printed</span>
-                    </div>
-
-                    <div className="text-center px-2">
-                        <span className="counter-num text-white fw-extrabold d-block" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', lineHeight: '1' }}>200</span>
-                        <span className="text-white-50 text-uppercase tracking-wider d-block mt-2" style={{ fontSize: 'clamp(0.7rem, 1vw, 0.9rem)', fontWeight: '700' }}>Hands Assembled</span>
-                    </div>
-
-                    <div className="text-center px-2">
-                        <span className="counter-num text-white fw-extrabold d-block" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', lineHeight: '1' }}>100</span>
-                        <span className="text-white-50 text-uppercase tracking-wider d-block mt-2" style={{ fontSize: 'clamp(0.7rem, 1vw, 0.9rem)', fontWeight: '700' }}>Recipients Fitted</span>
-                    </div>
-
-                    <div className="text-center px-2">
-                        <span className="counter-num text-white fw-extrabold d-block" style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4.5rem)', lineHeight: '1' }}>140</span>
-                        <span className="text-white-50 text-uppercase tracking-wider d-block mt-2" style={{ fontSize: 'clamp(0.7rem, 1vw, 0.9rem)', fontWeight: '700' }}>Volunteer Printers</span>
-                    </div>
+                    {Numbers('sand', 500, 'Parts Printed')}
+                    {Numbers('white', 200, 'Hands Assembled')}
+                    {Numbers('white', 100, 'Recipients Fitted')}
+                    {Numbers('white', 140, 'Volunteer Printers')}
                 </div>
 
                 <div className="d-flex gap-3 flex-wrap justify-content-center">
-                    <Button onClick={() => scrollToSection('case-matrix')} variant="none" className="bg-pal-terra text-white px-5 py-3 font-weight-bold shadow-sm" style={{ borderColor: 'rgba(255,255,255,0.4)', fontSize: 'clamp(0.9rem, 1.2vw, 1.2rem)', borderRadius: 'var(--radius)' }}>
-                    I have a 3D printer →
-                    </Button>
-
-                    <Button onClick={() => scrollToSection('donate')} variant="none" className="bg-pal-green-mid text-white px-5 py-3 font-weight-bold shadow-sm" style={{ borderColor: 'rgba(255,255,255,0.4)', fontSize: 'clamp(0.9rem, 1.2vw, 1.2rem)', borderRadius: 'var(--radius)' }}>
-                    Donate $35 — one hand
-                    </Button>
+                    {UserButton('case-matrix', 'terra', 'I have a 3D printer →')}
+                    {UserButton('donate', 'green-mid', 'Donate $35 — one hand →')}
                 </div>
             </Container>
         </header>

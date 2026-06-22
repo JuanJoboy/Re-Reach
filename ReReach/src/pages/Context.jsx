@@ -1,4 +1,5 @@
 import { Container, Row, Col, Card, Image, Badge } from 'react-bootstrap';
+import Header from '../components/Title'
 import { Stethoscope, Wrench, Shield, AlertTriangle, Activity } from 'lucide-react';
 import Amputee from '../assets/Amputee.jpg';
 
@@ -9,20 +10,7 @@ export default function Context()
             <Container className="py-5">
 
                 {/* 1. Full-Width Impactful Title & Introduction */}
-                <Row className="mb-5">
-                    <Col lg={10}>
-                        <h1 className="display-3 text-uppercase tracking-widest fw-black text-pal-terra mb-2" style={{ letterSpacing: '0.15em', fontWeight: '900' }}>
-                            The Post-War Reality
-                        </h1>
-                        <h2 className="display-4 fw-black text-pal-green mb-4" style={{ fontWeight: '900', letterSpacing: '-0.03em' }}>
-                            Survival is only the first step.
-                        </h2>
-                        <p className="lead fw-bold text-ink fs-4 m-0" style={{ lineHeight: '1.5' }}>
-                            Despite the war being over, a secondary crisis is still present. For thousands of Palestinians, immediate survival was just the beginning. True recovery requires extensive surgery, long-term rehabilitation, and access to functional prosthetic devices.
-                        </p>
-                    </Col>
-                </Row>
-
+                <Header heading="The Post-War Reality" subheading="Survival is only the first step." text="Despite the war being over, a secondary crisis is still present. For thousands of Palestinians, immediate survival was just the beginning. True recovery requires extensive surgery, long-term rehabilitation, and access to functional prosthetic devices." />
 
                 {/* 2. Horizontal Metrics Matrix Row */}
                 <Row className="g-4 mb-5">

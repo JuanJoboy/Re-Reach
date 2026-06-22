@@ -3,6 +3,13 @@ import Logo from '../assets/Logo.png';
 
 export default function NavbarComponent({ scrollToSection })
 {
+    function Link(section, text)
+    {
+        return <Nav.Link as="button" onClick={() => scrollToSection(section)} className="border-0 bg-transparent text-white fw-medium">
+            {text}
+        </Nav.Link>
+    }
+
     return (
         <Navbar expand="lg" fixed="top" className="bg-pal-terra-dark shadow-lg py-2">
             <Container fluid="lg">
@@ -16,21 +23,10 @@ export default function NavbarComponent({ scrollToSection })
                 <Navbar.Collapse id="main-nav">
                     {/* Center Navigation */}
                     <Nav className="mx-auto align-items-center gap-lg-4 gap-xl-5">
-                        <Nav.Link as="button" onClick={() => scrollToSection('hero')} className="border-0 bg-transparent text-white fw-medium">
-                            Our Mission
-                        </Nav.Link>
-
-                        <Nav.Link as="button" onClick={() => scrollToSection('case-matrix')} className="border-0 bg-transparent text-white fw-medium">
-                            Active Cases
-                        </Nav.Link>
-
-                        <Nav.Link as="button" onClick={() => scrollToSection('logistics-pipeline')} className="border-0 bg-transparent text-white fw-medium">
-                            Shipping
-                        </Nav.Link>
-
-                        <Nav.Link as="button" onClick={() => scrollToSection('request-form')} className="border-0 bg-transparent text-white fw-medium">
-                            Request a Hand
-                        </Nav.Link>
+                        {Link('hero', 'Our Mission')}
+                        {Link('case-matrix', 'Active Cases')}
+                        {Link('logistics-pipeline', 'Shipping')}
+                        {Link('request-form', 'Request a Hand')}
                     </Nav>
 
                     {/* Donate Button */}
